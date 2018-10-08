@@ -14,33 +14,33 @@ import cv2
 import numpy as np
 import time
 from appJar import gui
+import sys, os
 
 SCREEN = "fullscreen" #"480x800"
 
 imgs = []
 
 def kp(button):
-    app.set
-    pass
+	app.set
+	pass
 
 def scan(button):
-        #open up webcameras, take a picture from each
-        if button == 'return':
-                app.setTabbedFrameSelectedTab('device','scan')
-                return
+#open up webcameras, take a picture from each
+	if button == 'return':
+		app.setTabbedFrameSelectedTab('device','scan')
+		return
+	
+	t = int(time.time())
+	for x in range(3):
+		cam = cv2.VideoCapture(x)
+		_,img = cam.read()
+	#cv2.imshow('cam {}'.format(x), img)
+		del cam
+	#imgs.append(img)
+		cv2.imwrite('img/{}_{}.jpg'.format(t,x),img)
 
-
-        t = int(time.time())
-        for x in range(3):
-                cam = cv2.VideoCapture(x)
-                _,img = cam.read()
-                #cv2.imshow('cam {}'.format(x), img)
-                del cam
-                #imgs.append(img)
-                cv2.imwrite('{}_{}.jpg'.format(t,x),img)
-
-        
-        app.setTabbedFrameSelectedTab('device','write')
+	dnum = len([x for x in os.listdir('img/') if os.path.isfile('img/'+str(x))])
+	app.setLabel('number','{} of 3000'.format(dnum))
 
 #start a gui
 
@@ -51,6 +51,7 @@ app.startTabbedFrame('device')
 app.startTab('scan')
 
 app.addLabel('instruction','Place a part in and press scan')
+app.addLabel('number','')
 app.addButton('SCAN',scan)
 app.setButtonBg('SCAN','green')
 app.setButtonPadding('SCAN',[90,60])
