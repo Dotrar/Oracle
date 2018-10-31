@@ -39,7 +39,6 @@ for i in range(3):
 
 while True:
     input('reposition and take shot')
-
     for x in range(3):
         t = int(time.time())
         cam = cv2.VideoCapture(x)
