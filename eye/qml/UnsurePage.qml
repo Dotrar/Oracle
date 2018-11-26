@@ -20,18 +20,9 @@ Page {
 		id: keypad
 		onKeypadChanged: console.log('keypadchanged')
 		onFinished: {
-			var component;
-			var item;
-			component = Qt.createComponent("ProductItem.qml")
-			item = component.createObject(keypad,{"code":keypad.value})
-			console.log('finished')
-			unsurePage.parent.selectedItem = item
+			oracle.select(keypad.value)
 			unsurePage.StackView.view.replace(Qt.resolvedUrl("SurePage.qml"))
 		}
-		onValueChanged: {
-			console.log('valuechanged')
-		}
-
 	}
 
 	ColumnLayout{

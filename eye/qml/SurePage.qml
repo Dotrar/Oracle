@@ -6,20 +6,23 @@ Page {
 	id: surePage
 	width: parent.width
 	height: parent.height
-	property ProductItem item: parent.selectedItem
-
 	header: Label {
-		text: item.code
+		text: theItem.code
 		font.pixelSize: Qt.application.font.pixelSize * 2
 		horizontalAlignment: Text.AlignHCenter
 		padding: 10
+	}
+	ProductItem {
+		id: theItem
+		code: oracle.selection
+		visible: false
 	}
 	ColumnLayout{
 		anchors.fill: parent
 		Image {
 			Layout.preferredHeight: 400
 			fillMode: Image.PreserveAspectFit
-			source: item.img
+			source: theItem.img
 		}
 		Label{
 			Layout.fillHeight: true
