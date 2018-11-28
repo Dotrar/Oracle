@@ -19,3 +19,12 @@ Item {
 		}
 	}
 }
+//**** TODO
+/*
+	We need to adjust this to load dynamic content and have multiple properties and failsafes.
+
+	such as when the product doesn't exsist
+
+	as well as the blurb / pricing information
+
+*/

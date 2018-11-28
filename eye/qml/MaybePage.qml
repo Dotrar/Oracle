@@ -2,6 +2,7 @@ import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
 import QtQuick.Controls.Styles 1.4
+import Oracle 1.0
 
 Page {
 	id: maybePage
@@ -18,9 +19,9 @@ Page {
 	}
 	Keys.onReturnPressed: if(this.StackView.view) this.StackView.view.pop()	//keyboard delete for debugging
 
+
 	PageIndicator {
 		id: indicator
-
 		count: possibilitiesSwipe.count
 		currentIndex: possibilitiesSwipe.currentIndex
 		anchors.bottom: parent.bottom
@@ -34,11 +35,11 @@ Page {
 			if(currentItem)
 			{console.log(currentItem.code)}
 		}
-		ProductItem{ 							//we'll get this from python somehow 
-			code: 'ZZ9876'						//
-		}
-		ProductItem{
-			code: 'AB1234'
+		Repeater {
+			model: oracle.response
+			delegate: ProductItem {
+				code: modelData
+			}
 		}
 	}
 	footer:RowLayout{
@@ -57,7 +58,7 @@ Page {
 			Layout.fillHeight: true
 			text: possibilitiesSwipe.currentItem.code
 			onActivated: {
-				maybePage.parent.selectedItem = possibilitiesSwipe.currentItem
+				oracle.select(possibilitiesSwipe.currentItem.code)
 				maybePage.StackView.view.replace(Qt.resolvedUrl("SurePage.qml"));
 			}
 		}
