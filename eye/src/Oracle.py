@@ -5,6 +5,10 @@ from PyQt5.QtQml import *
 import threading
 import time
 
+import boto3
+from io import BytesIO
+import numpy as np
+import json
 
 class Oracle(QObject):
 
@@ -18,11 +22,34 @@ class Oracle(QObject):
         self._value = ''
         self._select = ''
         self._response = []
+        self._img = []
+
+        #aws services
+        self.sage = boto3.Session().client(service_name='sagemaker-runtime')
+
 
     def handle_cameras(self):
+    '''
+        for i in range(3):
+           c = cv2.VideoCapture(x)
+           _,img = cam.read()
+           del c
+
+           _,j = cv2.imencode('.jpg',img)
+        
+    '''
         pass
 
     def get_model_response(self):
+        '''
+        resp = self.sage.invoke_endpoint(
+            EndpointName='oracle-ep-2018-10-15-05-14-16',
+            ContentType='application/x-image',
+            Body=bytearray(self._img[0]))
+
+        res = resp['Body'].read()
+        res = json.loads(res.decode('utf-8'))
+        '''
         pass
 
     def upload_new(self):
@@ -35,7 +62,6 @@ class Oracle(QObject):
 
         #capture is called so we shouldn't already cancel out of it
         self._cancel = False
-
         # ------------------------- define thread
         def thread():
             print('Simulating a timed process in a thread')
