@@ -14,14 +14,14 @@ Window {
 	Oracle{
 		id: oracle
 		onResponseReceived: {
-			var len = response.length;	//response is a list
+			var len = response.length;
 			if(len == 1){
 				this.selection = response[0]
 			}
 
-			if(len > 1 && len < 5){
+			if(len > 1 && len < 5){	//push swipe page for possible options
 				pagesStack.push(Qt.resolvedUrl("MaybePage.qml"))
-			} else {
+			} else {				//unsure completely
 				pagesStack.push(Qt.resolvedUrl("UnsurePage.qml"))
 			}
 		}

@@ -4,25 +4,25 @@ import QtQuick.Layouts 1.11
 
 Page {
 	id: surePage
-	width: parent.width
-	height: parent.height
 	header: Label {
-		text: theItem.code
+		text: productItem.code
 		font.pixelSize: Qt.application.font.pixelSize * 2
 		horizontalAlignment: Text.AlignHCenter
 		padding: 10
 	}
+
 	ProductItem {
-		id: theItem
+		id: productItem
 		code: oracle.selection
 		visible: false
 	}
+
 	ColumnLayout{
 		anchors.fill: parent
 		Image {
 			Layout.preferredHeight: 400
 			fillMode: Image.PreserveAspectFit
-			source: theItem.img
+			source: productItem.img
 		}
 		Label{
 			Layout.fillHeight: true
@@ -40,7 +40,9 @@ Page {
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 			text: "Mine seems different"
-			onActivated: surePage.StackView.view.replace(Qt.resolvedUrl("UnsurePage.qml"))	
+			onActivated: {
+				surePage.StackView.view.replace(Qt.resolvedUrl("UnsurePage.qml"))	
+			}
 		}
 		DelayButton{
 			id: confirmButton
@@ -48,8 +50,10 @@ Page {
 			Layout.fillHeight: true
 			text: "Yep, that's the one"
 			onActivated: {
+				//oracle.confirm()
+				//pops down to the last one
 				swipeView.currentIndex = 0
-				surePage.StackView.view.pop()
+				pagesStack.pop(swipeView)
 			}
 		}
 	}

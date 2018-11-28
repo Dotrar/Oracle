@@ -14,8 +14,10 @@ if __name__ == '__main__':
     sys_argv += ['--style', 'universal']
     
     app = QGuiApplication(sys_argv)
+
     qmlRegisterType(OracleKeypad, 'OracleKeypad', 1, 0, 'OracleKeypad')
     qmlRegisterType(Oracle, 'Oracle', 1, 0, 'Oracle')
+
     engine = QQmlApplicationEngine()
     engine.load(QUrl.fromLocalFile("qml/main.qml"))
     if len(engine.rootObjects()) == 0:

@@ -25,25 +25,25 @@ class Oracle(QObject):
         self._img = []
 
         #aws services
-        self.sage = boto3.Session().client(service_name='sagemaker-runtime')
+        #self.sage = boto3.Session().client(service_name='sagemaker-runtime')
 
 
     def handle_cameras(self):
-    '''
-        for i in range(3):
-           c = cv2.VideoCapture(x)
-           _,img = cam.read()
-           del c
+        '''
+            for i in range(3):
+               c = cv2.VideoCapture(x)
+               _,img = cam.read()
+               del c
 
-           _,j = cv2.imencode('.jpg',img)
-        
-    '''
+               _,j = cv2.imencode('.jpg',img)
+
+        '''
         pass
 
     def get_model_response(self):
         '''
         resp = self.sage.invoke_endpoint(
-            EndpointName='oracle-ep-2018-10-15-05-14-16',
+            EndpointName='Oracle-endpoint',
             ContentType='application/x-image',
             Body=bytearray(self._img[0]))
 
