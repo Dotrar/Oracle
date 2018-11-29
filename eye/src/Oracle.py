@@ -23,6 +23,7 @@ class Oracle(QObject):
         self._select = ''
         self._response = []
         self._img = []
+        self._flagged = False
 
         #aws services
         #self.sage = boto3.Session().client(service_name='sagemaker-runtime')
@@ -34,9 +35,9 @@ class Oracle(QObject):
                c = cv2.VideoCapture(x)
                _,img = cam.read()
                del c
-
                _,j = cv2.imencode('.jpg',img)
 
+            return image_array
         '''
         pass
 
@@ -52,7 +53,8 @@ class Oracle(QObject):
         '''
         pass
 
-    def upload_new(self):
+    def upload_new(self,code):
+        print('upload new passed with',code)
         pass
 
     # ---------------------------------------------- slots
@@ -66,21 +68,37 @@ class Oracle(QObject):
         def thread():
             print('Simulating a timed process in a thread')
             time.sleep(1)
+    
+            # img_array = self.handle_cameras()
+            # resp = self.get_model_response()
 
             if not self._cancel:
+                self._response = resp
+                self._recentimg = img_array
                 self._response = ['AA1234', 'BB2345', 'CC3456', 'DD4567']
                 self.responseReceived.emit(self._response)
-
         # -----------------------------------------
-
         threading.Thread(target=thread).start()
+
+
 
     @pyqtSlot()
     def cancel(self):
         self._cancel = True
 
     @pyqtSlot(str)
-    def offer_correction(self,code):
+    def confirm(self,code):
+
+        if self._flagged:
+            # send to s3 input bucket
+            self.upload_new(code)
+        else:
+            pass
+
+        #clear everything and restart
+        #qml will handle the screen transition
+        self._recentimg = []
+        self._response = []
         pass
 
     @pyqtSlot(str)

@@ -1,7 +1,9 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
-
+/*
+	Pretty much, by the end of it all, we arrive here.
+*/
 Page {
 	id: surePage
 	header: Label {
@@ -50,7 +52,7 @@ Page {
 			Layout.fillHeight: true
 			text: "Yep, that's the one"
 			onActivated: {
-				//oracle.confirm()
+				oracle.confirm(oracle.selection)
 				//pops down to the last one
 				swipeView.currentIndex = 0
 				pagesStack.pop(swipeView)
