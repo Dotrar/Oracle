@@ -5,8 +5,8 @@ import OracleKeypad 1.0
 
 Page {
 	id: unsurePage
-	width: parent.width
-	height: parent.height
+	//width: parent.width
+	//height: parent.height
 	header: Label {
 		text: qsTr("Unsure")
 		font.pixelSize: Qt.application.font.pixelSize * 2
@@ -18,10 +18,9 @@ Page {
 
 	OracleKeypad {
 		id: keypad
-		onKeypadChanged: console.log('keypadchanged')
+		onKeypadChanged: {}
 		onFinished: {
 			oracle.select(keypad.value)
-			unsurePage.StackView.view.replace(Qt.resolvedUrl("SurePage.qml"))
 		}
 	}
 

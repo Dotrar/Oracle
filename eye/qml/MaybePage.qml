@@ -6,8 +6,8 @@ import Oracle 1.0
 
 Page {
 	id: maybePage
-	width: parent.width
-	height: parent.height
+	//width: parent.width
+	//height: parent.height
 	header: Label {
 		id: header
 		//text: qsTr("It might be one of these...")
@@ -59,7 +59,6 @@ Page {
 			text: possibilitiesSwipe.currentItem.code
 			onActivated: {
 				oracle.select(possibilitiesSwipe.currentItem.code)
-				maybePage.StackView.view.replace(Qt.resolvedUrl("SurePage.qml"));
 			}
 		}
 	}
