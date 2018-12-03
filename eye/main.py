@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -11,7 +11,7 @@ if __name__ == '__main__':
     import sys
 
     sys_argv = sys.argv
-    sys_argv += ['--style', 'universal']
+    sys_argv += ['--style', 'material']
     
     app = QGuiApplication(sys_argv)
 
