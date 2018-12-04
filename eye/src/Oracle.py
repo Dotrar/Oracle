@@ -61,7 +61,7 @@ class Oracle(QObject):
 
     @pyqtSlot()
     def capture(self):      # returns a list of possible options, [] [1] [1,2,3]
-
+        print('calling capture')
         #capture is called so we shouldn't already cancel out of it
         self._cancel = False
         # ------------------------- define thread
@@ -73,8 +73,7 @@ class Oracle(QObject):
             # resp = self.get_model_response()
 
             if not self._cancel:
-                self._response = resp
-                self._recentimg = img_array
+                #self._recentimg = img_array
                 self._response = ['AA1234', 'BB2345', 'CC3456', 'DD4567']
                 self.responseReceived.emit(self._response)
         # -----------------------------------------
