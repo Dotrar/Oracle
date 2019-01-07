@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
