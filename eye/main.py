@@ -11,7 +11,7 @@ if __name__ == '__main__':
     import sys
 
     sys_argv = sys.argv
-    sys_argv += ['--style', 'universal']
+    sys_argv += ['--style', 'material']
     
     app = QGuiApplication(sys_argv)
 

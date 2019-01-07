@@ -14,9 +14,10 @@ Window {
 	Oracle{
 		id: oracle
 		onResponseReceived: {
+			console.log("response received")
 			var len = response.length;
 			if(len == 1){
-				this.selection = response[0]
+				this.selection = response[0] //triggers selection changed
 			}
 
 			if(len > 1 && len < 5){	//push swipe page for possible options
@@ -83,13 +84,12 @@ Window {
 					}
 				]
 				//debugginc controls, ideally remove this but can keep it for debuggin
-				/*
 				 Keys.onPressed: {
 					 if (event.key == Qt.Key_1) 		pagesStack.push(Qt.resolvedUrl("UnsurePage.qml"))
 					 else if (event.key == Qt.Key_2) pagesStack.push(Qt.resolvedUrl("MaybePage.qml"))
 					 else if (event.key == Qt.Key_3) pagesStack.push(Qt.resolvedUrl("SurePage.qml"))
 					 else 							console.log(event.key)
-				 }*/
+				 }
 
 
 
