@@ -7,8 +7,8 @@ import Oracle 1.0
 Window {
 	id: window
 	visible: true
-	width: 480
-	height: 800
+	height: 480
+	width: 800
 	title: qsTr("Oracle")
 
 	Oracle{

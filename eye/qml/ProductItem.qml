@@ -7,15 +7,15 @@ Item {
 	property alias code:  pLabel.text
 	property alias img:  pImage.source
 
-	ColumnLayout{
-		Label {
-			id: pLabel
-			text: 'undefined'
-		}
+	RowLayout{
 		Image {
 			id: pImage
 			source: 'base.jpg'
-			fillMode: Image.Stretch
+			fillMode: Image.PreserveAspectFit
+		}
+		Label {
+			id: pLabel
+			text: 'undefined'
 		}
 	}
 }

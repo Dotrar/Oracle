@@ -6,27 +6,8 @@ import Oracle 1.0
 
 Page {
 	id: maybePage
-	//width: parent.width
-	//height: parent.height
-	header: Label {
-		id: header
-		//text: qsTr("It might be one of these...")
-		text: possibilitiesSwipe.currentItem.code
-		anchors.horizontalCenter: parent.horizontalCenter
-		horizontalAlignment: Text.AlignHCenter
-		font.pixelSize: Qt.application.font.pixelSize * 2
-		padding: 10
-	}
+	
 	Keys.onReturnPressed: if(this.StackView.view) this.StackView.view.pop()	//keyboard delete for debugging
-
-
-	PageIndicator {
-		id: indicator
-		count: possibilitiesSwipe.count
-		currentIndex: possibilitiesSwipe.currentIndex
-		anchors.bottom: parent.bottom
-		anchors.horizontalCenter: parent.horizontalCenter
-	}
 
 	SwipeView{
 		id: possibilitiesSwipe
@@ -42,9 +23,28 @@ Page {
 			}
 		}
 	}
-	footer:RowLayout{
-		spacing: 0
-		height: 80		//on 5" screen this is only 10% of screen
+	PageIndicator {
+		id: indicator
+		count: possibilitiesSwipe.count
+		currentIndex: possibilitiesSwipe.currentIndex
+		anchors.bottom: parent.bottom
+		anchors.horizontalCenter: parent.horizontalCenter
+	}
+	footer: DialogButtonBox {
+		alignment: undefined
+
+		Button {
+			text: qsTr("Save")
+			DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
+		}
+		Button {
+			text: qsTr("Close")
+			DialogButtonBox.buttonRole: DialogButtonBox.DestructiveRole
+		}
+	}
+  /* 
+	RowLayout{
+		id: footer
 		DelayButton{
 			id: noneButton
 			Layout.fillWidth: true
@@ -61,7 +61,7 @@ Page {
 				oracle.select(possibilitiesSwipe.currentItem.code)
 			}
 		}
-	}
+	}*/
 
 
 }
