@@ -2,7 +2,7 @@
 Part Finding using computer vision and AWS sagemaker.
 
 * Frontend code is in `eye`
-* `partfinder.stl` is the original bowl design, (view in github)[./partfinder.stl]
+* `partfinder.stl` is the original bowl design, [view in github](./partfinder.stl)
 
 
 ## System overview
